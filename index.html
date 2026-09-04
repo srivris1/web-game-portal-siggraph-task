@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXUS ARCADE — Web Game Portal</title>
+  <meta name="description" content="NEXUS ARCADE: A stunning web game portal featuring Three.js 3D games, HTML Canvas games, interactive particles, and a global leaderboard. Built for ACM SIGGRAPH.">
+  <meta name="keywords" content="web games, Three.js, HTML Canvas, arcade, game portal, ACM SIGGRAPH">
+  <meta name="author" content="Your Name">
+  <meta name="theme-color" content="#0a0a1a">
+
+  <meta property="og:title" content="NEXUS ARCADE — Web Game Portal">
+  <meta property="og:description" content="Play 3D and 2D browser games with stunning neon aesthetics.">
+  <meta property="og:type" content="website">
+
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/hub.css">
+  <link rel="stylesheet" href="css/leaderboard.css">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+</head>
+<body>
+
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="nav-brand">
+        <span class="nav-logo-icon">🎮</span>
+        <span class="nav-logo">NEXUS ARCADE</span>
+      </a>
+      <div class="nav-links" id="nav-links">
+        <a href="#games" class="nav-link active">Games</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#leaderboard" class="nav-link">Leaderboard</a>
+      </div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        ACM SIGGRAPH • Web Game Portal
+      </div>
+      <h1 class="hero-title">
+        <span class="gradient-text">NEXUS ARCADE</span>
+      </h1>
+      <p class="hero-subtitle">
+        Immersive 3D and 2D browser games powered by Three.js and HTML Canvas.
+        Jump in, compete, and climb the leaderboard.
+      </p>
+      <div class="hero-actions">
+        <a href="#games" class="btn btn-primary">🎮 Explore Games</a>
+        <a href="#leaderboard" class="btn btn-secondary">🏆 Leaderboard</a>
+      </div>
+    </div>
+    <div class="hero-scroll-indicator">
+      <span>Scroll Down</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <section class="stats-section reveal" id="stats">
+    <div class="container">
+      <div class="stats-grid stagger-children">
+        <div class="stat-card glass">
+          <div class="stat-number" data-target="3" data-suffix="">0</div>
+          <div class="stat-label">Games</div>
+        </div>
+        <div class="stat-card glass">
+          <div class="stat-number" data-target="2" data-suffix="">0</div>
+          <div class="stat-label">Engines</div>
+        </div>
+        <div class="stat-card glass">
+          <div class="stat-number" data-target="60" data-suffix=" FPS">0</div>
+          <div class="stat-label">Performance</div>
+        </div>
+        <div class="stat-card glass">
+          <div class="stat-number" data-target="100" data-suffix="%">0</div>
+          <div class="stat-label">Responsive</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="games-section" id="games">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">
+          <span class="section-tag-line"></span>
+          Game Library
+          <span class="section-tag-line"></span>
+        </div>
+        <h2 class="section-title">Choose Your Mission</h2>
+        <p class="section-subtitle">Three unique games. One portal. Infinite fun.</p>
+      </div>
+
+      <div class="games-grid stagger-children">
+
+        <a href="games/space-odyssey/space-odyssey.html" class="game-card glow-border" id="card-space-odyssey" style="--card-accent: #00f0ff;">
+          <div class="game-card-thumbnail">
+            <canvas id="thumb-space" width="640" height="400"></canvas>
+            <div class="game-card-overlay">
+              <div class="game-card-play-btn">▶</div>
+            </div>
+          </div>
+          <div class="game-card-body">
+            <div class="game-card-tags">
+              <span class="tag tag-cyan">3D</span>
+              <span class="tag tag-purple">Three.js</span>
+            </div>
+            <h3 class="game-card-title">Space Odyssey</h3>
+            <p class="game-card-desc">Navigate your spaceship through a deadly asteroid field in full 3D. How long can you survive?</p>
+            <div class="game-card-meta">
+              <div class="game-card-tech">
+                <span class="game-card-tech-icon">⚡</span>
+                Three.js • WebGL
+              </div>
+              <span class="tag tag-green" style="font-size:10px;">PLAY →</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="games/neon-snake/neon-snake.html" class="game-card glow-border" id="card-neon-snake" style="--card-accent: #8b5cf6;">
+          <div class="game-card-thumbnail">
+            <canvas id="thumb-snake" width="640" height="400"></canvas>
+            <div class="game-card-overlay">
+              <div class="game-card-play-btn">▶</div>
+            </div>
+          </div>
+          <div class="game-card-body">
+            <div class="game-card-tags">
+              <span class="tag tag-magenta">2D</span>
+              <span class="tag tag-orange">Canvas</span>
+            </div>
+            <h3 class="game-card-title">Neon Snake</h3>
+            <p class="game-card-desc">Classic snake reimagined with glowing neon trails and particle effects. Eat, grow, don't crash!</p>
+            <div class="game-card-meta">
+              <div class="game-card-tech">
+                <span class="game-card-tech-icon">🎨</span>
+                HTML Canvas
+              </div>
+              <span class="tag tag-green" style="font-size:10px;">PLAY →</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="games/asteroid-blitz/asteroid-blitz.html" class="game-card glow-border" id="card-asteroid-blitz" style="--card-accent: #ff00e5;">
+          <div class="game-card-thumbnail">
+            <canvas id="thumb-asteroid" width="640" height="400"></canvas>
+            <div class="game-card-overlay">
+              <div class="game-card-play-btn">▶</div>
+            </div>
+          </div>
+          <div class="game-card-body">
+            <div class="game-card-tags">
+              <span class="tag tag-cyan">Shooter</span>
+              <span class="tag tag-orange">Canvas</span>
+            </div>
+            <h3 class="game-card-title">Asteroid Blitz</h3>
+            <p class="game-card-desc">A classic arcade shooter. Blast asteroids, dodge debris, and rack up your score across waves!</p>
+            <div class="game-card-meta">
+              <div class="game-card-tech">
+                <span class="game-card-tech-icon">💥</span>
+                HTML Canvas
+              </div>
+              <span class="tag tag-green" style="font-size:10px;">PLAY →</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="features-section" id="features">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">
+          <span class="section-tag-line"></span>
+          Built With
+          <span class="section-tag-line"></span>
+        </div>
+        <h2 class="section-title">Tech & Features</h2>
+        <p class="section-subtitle">Cutting-edge web technologies for a seamless experience.</p>
+      </div>
+
+      <div class="features-grid stagger-children">
+        <div class="feature-card glass">
+          <div class="feature-icon">🎮</div>
+          <h3 class="feature-title">Three.js 3D</h3>
+          <p class="feature-desc">Real-time 3D graphics with WebGL — procedural geometry, lighting, and particle systems.</p>
+        </div>
+        <div class="feature-card glass">
+          <div class="feature-icon">🎨</div>
+          <h3 class="feature-title">HTML Canvas</h3>
+          <p class="feature-desc">Smooth 2D rendering with neon glow effects, particle explosions, and 60fps gameplay.</p>
+        </div>
+        <div class="feature-card glass">
+          <div class="feature-icon">✨</div>
+          <h3 class="feature-title">Particle FX</h3>
+          <p class="feature-desc">Interactive mouse-reactive particle background with proximity connections.</p>
+        </div>
+        <div class="feature-card glass">
+          <div class="feature-icon">🏆</div>
+          <h3 class="feature-title">Global Leaderboard</h3>
+          <p class="feature-desc">Firebase Firestore-powered global leaderboard. Compete with players worldwide across all games.</p>
+        </div>
+        <div class="feature-card glass">
+          <div class="feature-icon">📱</div>
+          <h3 class="feature-title">Responsive</h3>
+          <p class="feature-desc">Fully responsive from 375px mobile to 4K desktop. Touch controls on mobile devices.</p>
+        </div>
+        <div class="feature-card glass">
+          <div class="feature-icon">🔊</div>
+          <h3 class="feature-title">Sound FX</h3>
+          <p class="feature-desc">Web Audio API generated sound effects for immersive retro arcade feedback.</p>
+        </div>
+        <div class="feature-card glass">
+          <div class="feature-icon">🔥</div>
+          <h3 class="feature-title">Firebase Backend</h3>
+          <p class="feature-desc">Cloud Firestore database for real-time score tracking, persistence, and global player rankings.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="leaderboard-section" id="leaderboard">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">
+          <span class="section-tag-line"></span>
+          Hall of Fame
+          <span class="section-tag-line"></span>
+        </div>
+        <h2 class="section-title">🏆 Leaderboard</h2>
+        <p class="section-subtitle">Top players across all games.</p>
+        <div class="firebase-badge">
+          <span class="firebase-badge-dot"></span>
+          Powered by Firebase — Global Scores
+        </div>
+      </div>
+
+      <div class="leaderboard-wrapper reveal">
+        <div class="leaderboard-tabs">
+          <button class="leaderboard-tab active" data-game="space-odyssey">Space Odyssey</button>
+          <button class="leaderboard-tab" data-game="neon-snake">Neon Snake</button>
+          <button class="leaderboard-tab" data-game="asteroid-blitz">Asteroid Blitz</button>
+        </div>
+
+        <div class="leaderboard-table-container glass-strong">
+          <table class="leaderboard-table">
+            <thead>
+              <tr>
+                <th style="width:60px;">Rank</th>
+                <th>Player</th>
+                <th style="width:100px; text-align:right;">Score</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard-body">
+              <tr>
+                <td colspan="3" style="text-align:center; padding:2rem; color:var(--color-text-muted);">
+                  <div style="font-size:2rem; margin-bottom:0.5rem;">🎮</div>
+                  No scores yet — play a game to get on the board!
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div>
+          <div class="footer-brand">NEXUS ARCADE</div>
+          <p class="footer-text">Built for ACM SIGGRAPH Recruitment Task</p>
+        </div>
+        <div class="footer-links">
+          <a href="#games" class="footer-link">Games</a>
+          <a href="#leaderboard" class="footer-link">Leaderboard</a>
+          <a href="https://github.com" class="footer-link" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <p class="footer-text">© 2026 NEXUS ARCADE. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/hub.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const c1 = document.getElementById('thumb-space');
+      if (c1) {
+        const ctx = c1.getContext('2d');
+        const stars = [];
+        for (let i = 0; i < 120; i++) {
+          stars.push({
+            x: Math.random() * 640,
+            y: Math.random() * 400,
+            s: Math.random() * 2 + 0.5,
+            hue: Math.random() * 60 + 180,
+          });
+        }
+
+        function drawSpace() {
+          ctx.fillStyle = '#000015';
+          ctx.fillRect(0, 0, 640, 400);
+          const t = Date.now() * 0.0005;
+
+          stars.forEach(s => {
+            s.y += s.s * 0.5;
+            if (s.y > 400) { s.y = 0; s.x = Math.random() * 640; }
+            ctx.fillStyle = `hsla(${s.hue}, 80%, 70%, ${0.3 + s.s * 0.2})`;
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.s * 0.5, 0, Math.PI * 2);
+            ctx.fill();
+          });
+
+          ctx.save();
+          ctx.translate(320 + Math.sin(t * 2) * 30, 250 + Math.cos(t * 3) * 15);
+          ctx.shadowColor = '#00f0ff';
+          ctx.shadowBlur = 15;
+          ctx.fillStyle = '#00f0ff';
+          ctx.beginPath();
+          ctx.moveTo(0, -12);
+          ctx.lineTo(-10, 8);
+          ctx.lineTo(0, 4);
+          ctx.lineTo(10, 8);
+          ctx.closePath();
+          ctx.fill();
+          ctx.fillStyle = '#00ff88';
+          ctx.shadowColor = '#00ff88';
+          ctx.beginPath();
+          ctx.arc(0, 10, 3 + Math.sin(t * 20) * 1, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.shadowBlur = 0;
+          ctx.restore();
+
+          for (let i = 0; i < 5; i++) {
+            const ax = (t * 60 + i * 130) % 740 - 50;
+            const ay = 80 + i * 60 + Math.sin(t + i) * 20;
+            ctx.strokeStyle = 'rgba(180, 120, 80, 0.5)';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.arc(ax, ay, 12 + i * 3, 0, Math.PI * 2);
+            ctx.stroke();
+          }
+
+          requestAnimationFrame(drawSpace);
+        }
+        drawSpace();
+      }
+
+      const c2 = document.getElementById('thumb-snake');
+      if (c2) {
+        const ctx = c2.getContext('2d');
+        const snakeBody = [];
+        let angle = 0;
+
+        function drawSnakeThumb() {
+          ctx.fillStyle = '#050510';
+          ctx.fillRect(0, 0, 640, 400);
+          const t = Date.now() * 0.001;
+
+          ctx.strokeStyle = 'rgba(255,255,255,0.02)';
+          for (let x = 0; x < 640; x += 20) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, 400); ctx.stroke(); }
+          for (let y = 0; y < 400; y += 20) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(640, y); ctx.stroke(); }
+
+          const cx = 320 + Math.sin(t) * 100;
+          const cy = 200 + Math.cos(t * 1.3) * 60;
+          snakeBody.unshift({ x: cx, y: cy });
+          if (snakeBody.length > 30) snakeBody.pop();
+
+          snakeBody.forEach((s, i) => {
+            const hue = 180 + i * 5;
+            ctx.fillStyle = `hsl(${hue}, 100%, ${55 - i}%)`;
+            ctx.shadowColor = `hsl(${hue}, 100%, 50%)`;
+            ctx.shadowBlur = i === 0 ? 15 : 8;
+            ctx.fillRect(Math.round(s.x / 20) * 20, Math.round(s.y / 20) * 20, 18, 18);
+          });
+
+          ctx.fillStyle = '#ff00e5';
+          ctx.shadowColor = '#ff00e5';
+          ctx.shadowBlur = 15;
+          const pulse = 5 + Math.sin(t * 5) * 2;
+          ctx.beginPath();
+          ctx.arc(450, 150, pulse, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.shadowBlur = 0;
+
+          requestAnimationFrame(drawSnakeThumb);
+        }
+        drawSnakeThumb();
+      }
+
+      const c3 = document.getElementById('thumb-asteroid');
+      if (c3) {
+        const ctx = c3.getContext('2d');
+        const roids = [];
+        for (let i = 0; i < 8; i++) {
+          roids.push({
+            x: Math.random() * 640,
+            y: Math.random() * 400,
+            r: 15 + Math.random() * 25,
+            vx: (Math.random() - 0.5) * 1.5,
+            vy: (Math.random() - 0.5) * 1.5,
+            rot: 0,
+            rotS: (Math.random() - 0.5) * 0.03,
+            hue: Math.random() * 40 + 10,
+          });
+        }
+
+        function drawBlitzThumb() {
+          ctx.fillStyle = '#020208';
+          ctx.fillRect(0, 0, 640, 400);
+          const t = Date.now() * 0.001;
+
+          ctx.save();
+          ctx.translate(320, 300);
+          ctx.rotate(-Math.PI / 2 + Math.sin(t * 2) * 0.2);
+          ctx.strokeStyle = '#00f0ff';
+          ctx.shadowColor = '#00f0ff';
+          ctx.shadowBlur = 12;
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(16, 0);
+          ctx.lineTo(-10, -8);
+          ctx.lineTo(-5, 0);
+          ctx.lineTo(-10, 8);
+          ctx.closePath();
+          ctx.stroke();
+          ctx.shadowBlur = 0;
+          ctx.restore();
+
+          for (let i = 0; i < 3; i++) {
+            const by = 280 - i * 50 - ((t * 100) % 50);
+            ctx.fillStyle = '#00f0ff';
+            ctx.shadowColor = '#00f0ff';
+            ctx.shadowBlur = 10;
+            ctx.beginPath();
+            ctx.arc(320, by, 2, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          ctx.shadowBlur = 0;
+
+          roids.forEach(a => {
+            a.x += a.vx;
+            a.y += a.vy;
+            a.rot += a.rotS;
+            if (a.x < -30) a.x = 670;
+            if (a.x > 670) a.x = -30;
+            if (a.y < -30) a.y = 430;
+            if (a.y > 430) a.y = -30;
+
+            ctx.save();
+            ctx.translate(a.x, a.y);
+            ctx.rotate(a.rot);
+            ctx.strokeStyle = `hsl(${a.hue}, 40%, 50%)`;
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            for (let i = 0; i < 8; i++) {
+              const ang = (Math.PI * 2 / 8) * i;
+              const r = a.r * (0.8 + Math.sin(i * 1.5) * 0.2);
+              if (i === 0) ctx.moveTo(Math.cos(ang) * r, Math.sin(ang) * r);
+              else ctx.lineTo(Math.cos(ang) * r, Math.sin(ang) * r);
+            }
+            ctx.closePath();
+            ctx.stroke();
+            ctx.restore();
+          });
+
+          requestAnimationFrame(drawBlitzThumb);
+        }
+        drawBlitzThumb();
+      }
+    });
+  </script>
+</body>
+</html>
