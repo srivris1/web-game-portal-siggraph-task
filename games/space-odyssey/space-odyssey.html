@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Space Odyssey — NEXUS ARCADE</title>
+  <meta name="description" content="Dodge asteroids in 3D space! A Three.js powered game on NEXUS ARCADE.">
+  <link rel="stylesheet" href="../../css/index.css">
+  <link rel="stylesheet" href="../../css/game.css">
+  <link rel="stylesheet" href="space-odyssey.css">
+</head>
+<body class="game-page space-odyssey-page">
+
+  <header class="game-header">
+    <div class="game-header-left">
+      <a href="../../index.html" class="game-back-btn" id="back-btn">← Back</a>
+      <div class="game-title-bar">
+        <div class="game-title-icon">🚀</div>
+        <h1 class="game-title">SPACE ODYSSEY</h1>
+      </div>
+    </div>
+    <div class="game-header-right">
+      <div class="game-score-display">
+        <span class="game-score-label">Score</span>
+        <span class="game-score-value" id="score-value">0</span>
+      </div>
+      <div class="game-high-score">Best: <span id="high-score-value">0</span></div>
+    </div>
+  </header>
+
+  <main class="game-container">
+    <div class="game-canvas-wrapper" id="game-canvas-wrapper">
+
+      <div class="game-overlay" id="overlay-start">
+        <div class="game-overlay-icon">🚀</div>
+        <h2 class="game-overlay-title gradient-text">SPACE ODYSSEY</h2>
+        <p class="game-overlay-subtitle">Dodge the asteroids. Survive as long as you can.</p>
+        <div class="game-overlay-actions">
+          <button class="btn btn-primary" id="btn-start">▶ LAUNCH</button>
+        </div>
+      </div>
+
+      <div class="game-overlay hidden" id="overlay-gameover">
+        <div class="game-overlay-icon">💥</div>
+        <h2 class="game-overlay-title">GAME OVER</h2>
+        <p class="game-overlay-subtitle">Your Score</p>
+        <div class="game-overlay-score" id="final-score">0</div>
+        <div class="score-submit-form">
+          <input type="text" class="score-input" id="player-name" placeholder="Enter your name" maxlength="20">
+          <button class="btn btn-secondary" id="btn-submit-score">Submit Score</button>
+        </div>
+        <div class="game-overlay-actions">
+          <button class="btn btn-primary" id="btn-restart">↻ Play Again</button>
+          <a href="../../index.html" class="btn btn-ghost">← Hub</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="game-controls-bar">
+    <div class="control-hint"><span class="control-key">W</span><span class="control-key">A</span><span class="control-key">S</span><span class="control-key">D</span> or Arrow Keys to move</div>
+    <div class="control-hint"><span class="control-key">ESC</span> Quit</div>
+  </div>
+
+  <div class="touch-controls">
+    <div class="touch-dpad">
+      <button class="touch-btn touch-btn-up" data-dir="up">▲</button>
+      <button class="touch-btn touch-btn-left" data-dir="left">◄</button>
+      <button class="touch-btn touch-btn-right" data-dir="right">►</button>
+      <button class="touch-btn touch-btn-down" data-dir="down">▼</button>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="../../js/firebase-config.js"></script>
+  <script src="../../js/utils.js"></script>
+  <script src="space-odyssey.js"></script>
+</body>
+</html>
